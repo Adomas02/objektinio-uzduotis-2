@@ -61,7 +61,7 @@ void isvestis(Mokinys& mok)
 }
 double skaiciavimasVid(Mokinys& mok)
 {
-	double sum = 0, vid;//pazymiu suma, vidurkis ir galutinis
+	double sum = 0, vid;//pazymiu suma, vidurkis
 	for (int i = 0;i < mok.kiek;i++)
 	{
 		sum += mok.paz[i];
