@@ -53,11 +53,8 @@ void ivestis(Mokinys& mok)
 void isvestis(Mokinys& mok)
 {
 	cout << "Vardas" << setw(10) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) <<"Galutinis (Med.)" << endl;
-	cout << "--------------------------------------" << endl;
-	cout << mok.vardas << setw(10) << mok.pavarde << setw(10) << fixed << setprecision(2) << skaiciavimasVid(mok)<< setw(10) << skaiciavimasMed(mok) << endl;
-
-
-
+	cout << "----------------------------------------------------------" << endl;
+	cout << mok.vardas << setw(10) << mok.pavarde << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok)<< setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok) << endl;
 }
 double skaiciavimasVid(Mokinys& mok)
 {
