@@ -29,7 +29,7 @@ int main()
 	ivestis(a);
 	rikiavimas(a);
 	isvestis(a);
-
+	delete[] a.paz;
 }
 void ivestis(Mokinys& mok)
 {
@@ -40,9 +40,7 @@ void ivestis(Mokinys& mok)
 	cout << "Iveskite pazymiu skaiciu ";
 	cin >> mok.kiek;
 	cout << "Iveskite pazymius" << endl;
-
 	mok.paz = new int[mok.kiek];
-
 	for (int i = 0;i < mok.kiek;i++)
 	{
 		cin >> mok.paz[i];
