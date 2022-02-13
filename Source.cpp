@@ -2,6 +2,9 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include <stdio.h>      
+#include <stdlib.h>     
+#include <time.h>
 
 using std::cout;
 using std::cin;
@@ -27,6 +30,7 @@ void pazymiuIvestis(Mokinys& mok);
 
 int main()
 {
+	srand(time(NULL));
 	Mokinys a;
 	ivestis(a);
 	rikiavimas(a);
@@ -41,7 +45,8 @@ void ivestis(Mokinys& mok)
 	cin >> mok.pavarde;
 	pazymiuIvestis(mok);
 	cout << "Iveskite egzamino pazymi ";
-	cin >> mok.egz;
+	mok.egz=rand() % 10 + 1;
+	cout << mok.egz << endl;
 }
 void isvestis(Mokinys& mok)
 {
@@ -106,7 +111,8 @@ void pazymiuIvestis(Mokinys& mok)
 		if (yesNo == 'y')
 		{
 			int pazLaik;//laikinas pazimys
-			cin >> pazLaik;
+			pazLaik= rand() % 10 + 1;
+			cout<<pazLaik<<endl;
 			mok.paz.push_back(pazLaik);
 			i++;
 			mok.kiek = i;
