@@ -22,6 +22,7 @@ double skaiciavimas(double a, Mokinys& mok);
 double skaiciavimasVid(Mokinys& mok);
 void rikiavimas(Mokinys& mok);
 double skaiciavimasMed(Mokinys& mok);
+void pazymiuIvestis(Mokinys& mok);
 
 int main()
 {
@@ -37,14 +38,8 @@ void ivestis(Mokinys& mok)
 	cin >> mok.vardas;
 	cout << "Iveskite mokinio pavarde ";
 	cin >> mok.pavarde;
-	cout << "Iveskite pazymiu skaiciu ";
-	cin >> mok.kiek;
-	cout << "Iveskite pazymius" << endl;
-	mok.paz = new int[mok.kiek];
-	for (int i = 0;i < mok.kiek;i++)
-	{
-		cin >> mok.paz[i];
-	}
+	mok.paz = new int[100];
+	pazymiuIvestis(mok);
 	cout << "Iveskite egzamino pazymi ";
 	cin >> mok.egz;
 }
@@ -98,5 +93,25 @@ double skaiciavimasMed(Mokinys& mok)
 	{
 		mok.rezult = skaiciavimas(mok.paz[mok.kiek/2], mok);
 		return mok.rezult;
+	}
+}
+void pazymiuIvestis(Mokinys& mok)
+{
+	char yesNo;
+	int i = 0;
+	while (1)
+	{
+		cout << "Ar norite ivesti namu darbu pazymi? (y/n) ";
+		cin >> yesNo;
+		if (yesNo == 'y')
+		{
+			cin >> mok.paz[i];
+			i++;
+			mok.kiek = i;
+		}
+		else
+		{
+			break;
+		}
 	}
 }
