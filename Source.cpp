@@ -1,6 +1,7 @@
 #include<iomanip>
 #include<iostream>
 #include<string>
+#include<vector>
 
 using std::cout;
 using std::cin;
@@ -12,7 +13,7 @@ using std::setprecision;
 
 struct Mokinys {
 	string vardas, pavarde;
-	int* paz;
+	std::vector<int> paz;
 	int egz, kiek;
 	double rezult = 0;
 };
@@ -30,7 +31,7 @@ int main()
 	ivestis(a);
 	rikiavimas(a);
 	isvestis(a);
-	delete[] a.paz;
+	a.paz.clear();
 }
 void ivestis(Mokinys& mok)
 {
@@ -38,7 +39,6 @@ void ivestis(Mokinys& mok)
 	cin >> mok.vardas;
 	cout << "Iveskite mokinio pavarde ";
 	cin >> mok.pavarde;
-	mok.paz = new int[100];
 	pazymiuIvestis(mok);
 	cout << "Iveskite egzamino pazymi ";
 	cin >> mok.egz;
@@ -105,7 +105,9 @@ void pazymiuIvestis(Mokinys& mok)
 		cin >> yesNo;
 		if (yesNo == 'y')
 		{
-			cin >> mok.paz[i];
+			int pazLaik;//laikinas pazimys
+			cin >> pazLaik;
+			mok.paz.push_back(pazLaik);
 			i++;
 			mok.kiek = i;
 		}
