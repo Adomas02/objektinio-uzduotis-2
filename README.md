@@ -3,7 +3,7 @@
 ## Programa skirta skaičiuoti mokinių galutinį pažymį
 
 ### Paleidus programa jums reikeiės:<br>
--Pasirinkti ar norite įvesti informaciją apie mokinį
+- Pasirinkti ar norite įvesti informaciją apie mokinį
 - Įvesti mokinio vardą ir pavardę
 - Įvertinimai generuojami atsitiktinai
 
