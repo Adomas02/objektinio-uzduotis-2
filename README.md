@@ -7,4 +7,4 @@
 - Įvesti mokinio vardą ir pavardę
 - Įvertinimai generuojami atsitiktinai
 
-### Įvedus visu duomenis matysite lentelę su mokinių vardais bei pavardėmis ir galutinius įvertinimus 
+### Įvedus visus duomenis matysite lentelę su mokinių vardais bei pavardėmis ir galutinius įvertinimus 
