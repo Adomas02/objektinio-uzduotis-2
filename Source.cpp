@@ -178,7 +178,8 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			
 			for(int i=0;i<kiek;i++)
 			{
-				int num = stoi(eilDalys[2+i]);
+				string str = eilDalys[2+i];
+				int num = std::stoi(str);
 				mok.paz[i]=num;
 			}
 
