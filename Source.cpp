@@ -10,6 +10,7 @@
 #include <chrono>
 #include <boost/algorithm/algorithm.hpp>
 
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -29,7 +30,7 @@ struct Mokinys
 };
 
 void ivestis(std::vector<Mokinys> &mok);
-void isvestis(std::vector<Mokinys> &mok, int a);
+void isvestis(std::vector<Mokinys> &mok);
 double skaiciavimas(double a, std::vector<Mokinys> &mok, int i);
 double skaiciavimasVid(std::vector<Mokinys> &mok, int a);
 void rikiavimas(std::vector<Mokinys> &mok, int a);
@@ -37,13 +38,14 @@ double skaiciavimasMed(std::vector<Mokinys> &mok, int i);
 void pazymiuIvestis(std::vector<Mokinys> &mok, int a);
 void bufer_nusk(std::string read_vardas, std::string write_vardas);
 std::vector<std::string> split(std::string str, char delimiter);
+std::vector<Mokinys> sortabc(std::vector<Mokinys> mok);
 
 int main()
 {
 	srand(time(NULL));
 	std::vector<Mokinys> mok;
 	//Mokinys a;
-	ivestis(mok);
+	//ivestis(mok);
 	bufer_nusk("studentai.txt", "kursiokai.txt");
 }
 void ivestis(std::vector<Mokinys> &mok)
@@ -77,16 +79,21 @@ void ivestis(std::vector<Mokinys> &mok)
 			break;
 		}
 	}
-	isvestis(mok, i);
+	//isvestis(mok, i);
 }
-void isvestis(std::vector<Mokinys> &mok, int a)
+void isvestis(std::vector<Mokinys> &mok)
 {
-	cout << "Vardas" << setw(10) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
+	cout << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
 	cout << "----------------------------------------------------------" << endl;
-	for (int i = 0; i < a; i++)
-	{
-		cout << mok[i].vardas << setw(10) << mok[i].pavarde << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok, i) << setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok, i) << endl;
-	}
+	int i=0;
+	sortabc(mok);
+	for (Mokinys &m : mok)
+		{
+			rikiavimas(mok, i);
+			cout << mok[i].vardas << setw(20) << mok[i].pavarde << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok, i) << setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok, i) << endl;
+			i++;
+		}
+
 }
 double skaiciavimasVid(std::vector<Mokinys> &mok, int a)
 {
@@ -152,9 +159,7 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	std::vector<std::string> splited;
 	std::string eil;
 	std::stringstream my_buffer;
-	std::string delim = " ";
-	std::string vard;
-	size_t pos;
+	
 
 	//nuskaitymas i bufferi
 	std::ifstream open_f(read_vardas);
@@ -178,12 +183,10 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			
 			for(int i=0;i<kiek;i++)
 			{
-				string str = eilDalys[2+i];
-				int num = std::stoi(str);
-				mok.paz[i]=num;
+				mok.paz[i]=std::stoi(eilDalys[2+i]);
 			}
 
-			//mok.egz = std::stod(eilDalys[kiek+1]);
+			mok.egz = std::stod(eilDalys[kiek+2]);
 			
 
 			mokiniai.push_back(mok);
@@ -195,24 +198,8 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			break;
 
 	}
-	for (Mokinys &m : mokiniai)
-		{
-			cout<<m.vardas<<" ";
-			cout<<m.pavarde<<" ";
-			for(int i=0;i<kiek;i++)
-			{
-				cout<<m.paz[i]<<" ";
-			}
-			cout<<endl;
-		}
 
-	/*int i=0;	
-	for (std::string &m : eilDalys)
-	{
-		cout<<i++<<" "<<m<<"   ";
-
-	}*/
-
+	isvestis(mokiniai);
 
 	//vektroiaus konvertavimas i viena eilute
 	std::string outputas = "";
@@ -225,11 +212,6 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	out_f << outputas;
 	out_f.close();
 }
-
-
-
-
-
 std::vector<std::string> split(std::string str, char delimiter)
 {
 	std::vector<std::string> result;
@@ -244,21 +226,18 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return result;
 }
-
-/*
-std::vector<std::string> split_(std::string str, char delimiter)
+std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 {
-	std::vector<std::string> internal;
-	std::stringstream ss(str); // Turn the string into a stream.
-	std::string tok;
+	Mokinys laikinas;
+	for (Mokinys &m : mok)
+	 for(Mokinys &n : mok)
+	 if(m.vardas>n.vardas)
+	 {
+		laikinas= m;
+		m=n;
+		n=m;
+	 }
 
-	while (getline(ss, tok, delimiter))
-	{
-		internal.push_back(tok);
-	}
-
-	return internal;
+	return mok;
 }
-*/
-
 
