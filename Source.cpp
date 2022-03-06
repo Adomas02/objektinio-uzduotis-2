@@ -171,21 +171,22 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			std::getline(my_buffer, eil);
 
 			std::vector<std::string> eilDalys = split(eil,' ');
-			Mokinys mok=Mokinys();
 
-			
+			Mokinys mok=Mokinys();
 			mok.vardas = eilDalys[0];
 			mok.pavarde = eilDalys[1];
-			cout<<eilDalys[1];
+			
 			for(int i=0;i<kiek;i++)
 			{
-				//mok.paz[i]=std::stod(eilDalys[2+i]);
+				int num = stoi(eilDalys[2+i]);
+				mok.paz[i]=num;
 			}
 
 			//mok.egz = std::stod(eilDalys[kiek+1]);
+			
 
 			mokiniai.push_back(mok);
-		
+    		//cout<<mokiniai.vardas;
 			splited.push_back(eil);
 
 		}
@@ -196,26 +197,21 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	for (Mokinys &m : mokiniai)
 		{
 			cout<<m.vardas<<" ";
-			cout<<m.pavarde<<endl;
-			/*for(int i=0;i<kiek;i++)
+			cout<<m.pavarde<<" ";
+			for(int i=0;i<kiek;i++)
 			{
 				cout<<m.paz[i]<<" ";
-			}*/
+			}
 			cout<<endl;
 		}
 
+	/*int i=0;	
+	for (std::string &m : eilDalys)
+	{
+		cout<<i++<<" "<<m<<"   ";
 
+	}*/
 
-	/*pos = splited[1].find(delim);
-	//cout<<pos;
-    vard = splited[1].substr(0,pos);
-	cout<<vard;
-   	vard = splited[1].substr(pos + 1, pos);
-	cout<<vard;
-    //pos = str.find(delim, pos + 1);
-    vard = splited[1].substr(pos + 1);
-	//cout<<vard;
-	*/
 
 	//vektroiaus konvertavimas i viena eilute
 	std::string outputas = "";
@@ -228,7 +224,28 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	out_f << outputas;
 	out_f.close();
 }
+
+
+
+
+
 std::vector<std::string> split(std::string str, char delimiter)
+{
+	std::vector<std::string> result;
+    size_t start;
+    size_t end = 0;
+ 
+    while ((start = str.find_first_not_of(delimiter, end)) != std::string::npos)
+    {
+        end = str.find(delimiter, start);
+        result.push_back(str.substr(start, end - start));
+    }
+
+	return result;
+}
+
+/*
+std::vector<std::string> split_(std::string str, char delimiter)
 {
 	std::vector<std::string> internal;
 	std::stringstream ss(str); // Turn the string into a stream.
@@ -241,3 +258,6 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return internal;
 }
+*/
+
+
