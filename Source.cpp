@@ -176,12 +176,13 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			
 			mok.vardas = eilDalys[0];
 			mok.pavarde = eilDalys[1];
+			cout<<eilDalys[1];
 			for(int i=0;i<kiek;i++)
 			{
-				mok.paz[i]=std::stod(eilDalys[2+i]);
+				//mok.paz[i]=std::stod(eilDalys[2+i]);
 			}
 
-			mok.egz = std::stod(eilDalys[kiek+1]);
+			//mok.egz = std::stod(eilDalys[kiek+1]);
 
 			mokiniai.push_back(mok);
 		
