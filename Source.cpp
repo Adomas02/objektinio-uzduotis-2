@@ -5,6 +5,11 @@
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <time.h>
+#include <fstream>
+#include <sstream> 
+#include <chrono>
+#include <boost/algorithm/algorithm.hpp>
+
 
 using std::cout;
 using std::cin;
@@ -30,6 +35,7 @@ double skaiciavimasVid(std::vector<Mokinys>& mok, int a);
 void rikiavimas(std::vector<Mokinys>& mok, int a);
 double skaiciavimasMed(std::vector<Mokinys>& mok, int i);
 void pazymiuIvestis(std::vector<Mokinys>& mok, int a);
+void bufer_nusk(std::string read_vardas, std::string write_vardas);
 
 int main()
 {
@@ -37,6 +43,7 @@ int main()
 	std::vector<Mokinys> a;
 	//Mokinys a;
 	ivestis(a);
+	bufer_nusk("studentai.txt","kursiokai.txt");
 }
 void ivestis(std::vector<Mokinys>& mok)
 {
@@ -57,7 +64,6 @@ void ivestis(std::vector<Mokinys>& mok)
 			string pavarde;
 			cin >> pavarde;
 			mok[i].pavarde = pavarde;
-
 			cout << "Iveskite egzamino pazymi ";
 			mok[i].egz = rand() % 10 + 1;
 			cout << mok[i].egz << endl;
@@ -143,4 +149,35 @@ void pazymiuIvestis(std::vector<Mokinys>& mok, int a)
 		mok[a].paz[i] = pazLaik;
 		i++;
 	}
+}
+void bufer_nusk(std::string read_vardas, std::string write_vardas) 
+{
+  std::vector<std::string> splited;
+  std::string eil;
+  std::stringstream my_buffer;
+	cout<<"test";
+	//nuskaitymas i bufferi
+    std::ifstream open_f(read_vardas);
+    my_buffer << open_f.rdbuf();
+    open_f.close();
+
+
+	//bufferio padalijimas i eiluciu vektoriu
+    while (my_buffer){ 
+      if (!my_buffer.eof()) {
+        std::getline(my_buffer, eil);
+        splited.push_back(eil);}
+      else break;
+    }
+
+  	//vektroiaus konvertavimas i viena eilute
+    std::string outputas="";
+    for (std::string &a: splited) (a.compare(*splited.rbegin()) !=0) ? outputas+=a+"\n":outputas+=a;
+    splited.clear();
+
+	//Failo isvedimas per viena eilute
+    std::ofstream out_f(write_vardas);
+    out_f << outputas;
+    out_f.close();
+  
 }
