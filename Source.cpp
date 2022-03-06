@@ -152,9 +152,11 @@ void pazymiuIvestis(std::vector<Mokinys>& mok, int a)
 }
 void bufer_nusk(std::string read_vardas, std::string write_vardas) 
 {
-  std::vector<std::string> splited;
-  std::string eil;
-  std::stringstream my_buffer;
+  	std::vector<std::string> splited;
+  	std::string eil;
+  	std::stringstream my_buffer;
+  	std::char delim = ' ';
+	size_t pos;
 	cout<<"test";
 	//nuskaitymas i bufferi
     std::ifstream open_f(read_vardas);
@@ -169,6 +171,12 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
         splited.push_back(eil);}
       else break;
     }
+	pos = eil.find(delim);
+	cout<<pos;
+    //dd = str.substr(pos - 2, 2);
+    //mm = str.substr(pos + 1, 2);
+    //pos = str.find(delim, pos + 1);
+    //yyyy = str.substr(pos + 1);
 
   	//vektroiaus konvertavimas i viena eilute
     std::string outputas="";
