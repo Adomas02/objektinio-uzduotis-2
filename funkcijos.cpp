@@ -38,7 +38,7 @@ void isvestis(std::vector<Mokinys> &mok)
 	cout << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
 	cout << "----------------------------------------------------------" << endl;
 	int i=0;
-	sortabc(mok);
+	
 	for (Mokinys &m : mok)
 		{
 			rikiavimas(mok, i);
@@ -109,7 +109,7 @@ void pazymiuIvestis(std::vector<Mokinys> &mok, int a)
 void bufer_nusk(std::string read_vardas, std::string write_vardas)
 {
 	std::vector<std::string> splited;
-	std::string eil;
+	std::string eil,temp;
 	std::stringstream my_buffer;
 	
 
@@ -119,6 +119,9 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	open_f.close();
 
 	std::vector<Mokinys> mokiniai;
+	
+	
+	std::getline(my_buffer, temp);
 
 	//bufferio padalijimas i eiluciu vektoriu
 	while (my_buffer)
@@ -151,6 +154,7 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 
 	}
 
+	mokiniai=sortabc(mokiniai);
 	isvestis(mokiniai);
 
 	//vektroiaus konvertavimas i viena eilute
@@ -178,16 +182,30 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return result;
 }
+std::vector<Mokinys> sortabc_(std::vector<Mokinys> mok)
+{
+	Mokinys laikinas;
+	for (Mokinys &m : mok)
+	 for(Mokinys &n : mok)
+	 if(m.vardas<n.vardas)
+	 {
+		laikinas= m;
+		m=n;
+		n=laikinas;
+	 }
+
+	return mok;
+}
 std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 {
 	Mokinys laikinas;
 	for (Mokinys &m : mok)
 	 for(Mokinys &n : mok)
-	 if(m.vardas>n.vardas)
+	 if(m.vardas<n.vardas)
 	 {
 		laikinas= m;
 		m=n;
-		n=m;
+		n=laikinas;
 	 }
 
 	return mok;
