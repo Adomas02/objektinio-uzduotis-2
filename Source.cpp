@@ -195,10 +195,11 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	for (Mokinys &m : mokiniai)
 		{
 			cout<<m.vardas<<" ";
-			for(int i=0;i<kiek;i++)
+			cout<<m.pavarde<<endl;
+			/*for(int i=0;i<kiek;i++)
 			{
 				cout<<m.paz[i]<<" ";
-			}
+			}*/
 			cout<<endl;
 		}
 
