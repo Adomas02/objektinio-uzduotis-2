@@ -145,7 +145,6 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			
 
 			mokiniai.push_back(mok);
-    		//cout<<mokiniai.vardas;
 			splited.push_back(eil);
 
 		}
@@ -182,20 +181,7 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return result;
 }
-std::vector<Mokinys> sortabc_(std::vector<Mokinys> mok)
-{
-	Mokinys laikinas;
-	for (Mokinys &m : mok)
-	 for(Mokinys &n : mok)
-	 if(m.vardas<n.vardas)
-	 {
-		laikinas= m;
-		m=n;
-		n=laikinas;
-	 }
 
-	return mok;
-}
 std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 {
 	Mokinys laikinas;
