@@ -2,6 +2,9 @@
 
 int main()
 {
+
+	SarasuGeneravimas();
+
 	
 	std::ifstream open_f("studentai.txt");
 	try{
@@ -27,6 +30,7 @@ int main()
 	std::vector<Mokinys> mok;
 	//Mokinys a;
 	//ivestis(mok);
-	bufer_nusk("studentai.txt", "kursiokai.txt");
+	//bufer_nusk("studentai.txt", "kursiokai.txt");
+	
 }
 
