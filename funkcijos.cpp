@@ -64,11 +64,12 @@ void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas, int kiek)
 		{
 			out_f << sarasuSarasas[i][j].vardas << " ";
 			out_f << sarasuSarasas[i][j].pavarde << " ";
-			out_f << sarasuSarasas[i][j].egz << " ";
+			
 			for (int k = 0; k < kiek; k++)
 			{
 				out_f << sarasuSarasas[i][j].paz[k] << " ";
 			}
+			out_f << sarasuSarasas[i][j].egz << " ";
 			out_f << endl;
 		}
 		bufer_nusk(writeFile, writeFileRez);
@@ -147,7 +148,7 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	auto start1 = std::chrono::high_resolution_clock::now(); auto st1=start1;
 	std::vector<Mokinys> ProtingiMokiniai;
 	std::vector<Mokinys> NeprotingiMokiniai;
-	double vid;
+	double vid,galutinis;
 	for(int i=0;i<mokiniai.size();i++)
 	{ 
 		double sum=0;
@@ -156,14 +157,15 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			sum+=mokiniai[i].paz[j];
 		}
 		vid=sum/(toliauKiek - 3);
-		if(vid>=5)
+		galutinis=vid*0,4+mokiniai[i].egz*0.6;
+		if(galutinis>=5)
 		{
 
-			mokiniai[i].rezult=vid;
+			mokiniai[i].rezult=galutinis;
 			ProtingiMokiniai.push_back(mokiniai[i]);
 		}
 		else{
-			mokiniai[i].rezult=vid;
+			mokiniai[i].rezult=galutinis;
 			NeprotingiMokiniai.push_back(mokiniai[i]);
 		}
 		
@@ -196,7 +198,7 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	std::ofstream out_nf(writeFileRez);
 	for(int i=0;i<NeprotingiMokiniai.size();i++)
 	{
-		out_nf<<ProtingiMokiniai[i].vardas<<" "<<fixed<<setprecision(2)<<ProtingiMokiniai[i].rezult<<endl;
+		out_nf<<NeprotingiMokiniai[i].vardas<<" "<<fixed<<setprecision(2)<<NeprotingiMokiniai[i].rezult<<endl;
 	}
 	out_nf.close();
 	auto end3 = std::chrono::high_resolution_clock::now();
