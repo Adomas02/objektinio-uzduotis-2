@@ -1,6 +1,7 @@
 #include "funkcijos.h"
 
-void ivestis(std::vector<Mokinys> &mok)
+/*
+void ivestis(std::vector<Mokinys> &mok,int kiek)
 {
 	int i = 0;
 	char y;
@@ -22,8 +23,8 @@ void ivestis(std::vector<Mokinys> &mok)
 			cout << "Iveskite egzamino pazymi ";
 			mok[i].egz = rand() % 10 + 1;
 			cout << mok[i].egz << endl;
-			pazymiuIvestis(mok, i);
-			rikiavimas(mok, i);
+			pazymiuIvestis(mok, i,kiek);
+			rikiavimas(mok, i,kiek);
 			i++;
 		}
 		else
@@ -32,22 +33,27 @@ void ivestis(std::vector<Mokinys> &mok)
 		}
 	}
 	//isvestis(mok, i);
-}
-void isvestis(std::vector<Mokinys> &mok)
+}*/
+void isvestis(std::vector<Mokinys> &mok,int kiek)
 {
-	cout << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	int i=0;
+	std::ofstream out_f("kursiokai.txt");
 	
+	//out_f << outputas;
+	
+	out_f << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
+	out_f << "----------------------------------------------------------" << endl;
+	int i=0;
+	//sortabc(mok);
 	for (Mokinys &m : mok)
 		{
-			rikiavimas(mok, i);
-			cout << mok[i].vardas << setw(20) << mok[i].pavarde << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok, i) << setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok, i) << endl;
+			rikiavimas(mok, i,kiek);
+			out_f << mok[i].vardas << setw(20) << mok[i].pavarde << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok, i,kiek) << setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok, i,kiek) << endl;
 			i++;
 		}
+		out_f.close();
 
 }
-double skaiciavimasVid(std::vector<Mokinys> &mok, int a)
+double skaiciavimasVid(std::vector<Mokinys> &mok, int a,int kiek)
 {
 	double sum = 0, vid; //pazymiu suma, vidurkis
 	for (int i = 0; i < kiek; i++)
@@ -58,7 +64,7 @@ double skaiciavimasVid(std::vector<Mokinys> &mok, int a)
 	mok[a].rezult = skaiciavimas(vid, mok, a);
 	return mok[a].rezult;
 }
-void rikiavimas(std::vector<Mokinys> &mok, int a)
+void rikiavimas(std::vector<Mokinys> &mok, int a, int kiek)
 {
 	int laikinas;
 	for (int i = 0; i < kiek; i++)
@@ -77,7 +83,7 @@ double skaiciavimas(double a, std::vector<Mokinys> &mok, int i)
 	mok[i].rezult = 0.4 * a + 0.6 * mok[i].egz;
 	return mok[i].rezult;
 }
-double skaiciavimasMed(std::vector<Mokinys> &mok, int i)
+double skaiciavimasMed(std::vector<Mokinys> &mok, int i, int kiek)
 {
 	if (kiek % 2 == 0)
 	{
@@ -92,7 +98,7 @@ double skaiciavimasMed(std::vector<Mokinys> &mok, int i)
 		return mok[i].rezult;
 	}
 }
-void pazymiuIvestis(std::vector<Mokinys> &mok, int a)
+void pazymiuIvestis(std::vector<Mokinys> &mok, int a,int kiek)
 {
 	int i = 0;
 	for (int j = 0; j < kiek; j++)
@@ -109,7 +115,7 @@ void pazymiuIvestis(std::vector<Mokinys> &mok, int a)
 void bufer_nusk(std::string read_vardas, std::string write_vardas)
 {
 	std::vector<std::string> splited;
-	std::string eil,temp;
+	std::string eil,tmp;
 	std::stringstream my_buffer;
 	
 
@@ -117,11 +123,15 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	std::ifstream open_f(read_vardas);
 	my_buffer << open_f.rdbuf();
 	open_f.close();
-
+	std::getline(my_buffer, tmp);
+	std::vector<std::string> tmpeilDalys = split(tmp,' ');
+	int kiek=0;
+	for (std::string &a : tmpeilDalys)
+	{
+		kiek++;
+	}
+	//cout<<kiek;
 	std::vector<Mokinys> mokiniai;
-	
-	
-	std::getline(my_buffer, temp);
 
 	//bufferio padalijimas i eiluciu vektoriu
 	while (my_buffer)
@@ -136,15 +146,17 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 			mok.vardas = eilDalys[0];
 			mok.pavarde = eilDalys[1];
 			
-			for(int i=0;i<kiek;i++)
+			mok.paz = new int[kiek];
+			for(int i=0;i<kiek-3;i++)
 			{
 				mok.paz[i]=std::stoi(eilDalys[2+i]);
 			}
 
-			mok.egz = std::stod(eilDalys[kiek+2]);
+			mok.egz = std::stod(eilDalys[kiek-1]);
 			
 
 			mokiniai.push_back(mok);
+    		//cout<<mokiniai.vardas;
 			splited.push_back(eil);
 
 		}
@@ -153,9 +165,8 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 
 	}
 
-	mokiniai=sortabc(mokiniai);
-	isvestis(mokiniai);
-
+	isvestis(mokiniai,kiek-3);
+	/*
 	//vektroiaus konvertavimas i viena eilute
 	std::string outputas = "";
 	for (std::string &a : splited)
@@ -165,7 +176,7 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 	//Failo isvedimas per viena eilute
 	std::ofstream out_f(write_vardas);
 	out_f << outputas;
-	out_f.close();
+	out_f.close();*/
 }
 std::vector<std::string> split(std::string str, char delimiter)
 {
@@ -181,17 +192,16 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return result;
 }
-
 std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 {
 	Mokinys laikinas;
 	for (Mokinys &m : mok)
 	 for(Mokinys &n : mok)
-	 if(m.vardas<n.vardas)
+	 if(m.vardas>n.vardas)
 	 {
 		laikinas= m;
 		m=n;
-		n=laikinas;
+		n=m;
 	 }
 
 	return mok;
