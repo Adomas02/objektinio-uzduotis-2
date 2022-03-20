@@ -34,6 +34,7 @@ void ivestis(std::vector<Mokinys> &mok,int kiek)
 	}
 	//isvestis(mok, i);
 }*/
+/*
 void isvestis(std::vector<Mokinys> &mok, int kiek)
 {
 	std::ofstream out_f("kursiokai.txt");
@@ -51,52 +52,21 @@ void isvestis(std::vector<Mokinys> &mok, int kiek)
 		i++;
 	}
 	out_f.close();
-}
-double skaiciavimasVid(std::vector<Mokinys> &mok, int a, int kiek)
+}*/
+/*double skaiciavimasVid(Mokinys mok, int kiek)
 {
 	double sum = 0, vid; // pazymiu suma, vidurkis
 	for (int i = 0; i < kiek; i++)
 	{
-		sum += mok[a].paz[i];
+		sum += mok.paz[i];
 	}
 	vid = sum / kiek;
-	mok[a].rezult = skaiciavimas(vid, mok, a);
-	return mok[a].rezult;
-}
-void rikiavimas(std::vector<Mokinys> &mok, int a, int kiek)
-{
-	int laikinas;
-	for (int i = 0; i < kiek; i++)
-		for (int j = i + 1; j < kiek; j++)
-		{
-			if (mok[a].paz[i] > mok[a].paz[j])
-			{
-				laikinas = mok[a].paz[i];
-				mok[a].paz[i] = mok[a].paz[j];
-				mok[a].paz[j] = laikinas;
-			}
-		}
-}
-double skaiciavimas(double a, std::vector<Mokinys> &mok, int i)
-{
-	mok[i].rezult = 0.4 * a + 0.6 * mok[i].egz;
-	return mok[i].rezult;
-}
-double skaiciavimasMed(std::vector<Mokinys> &mok, int i, int kiek)
-{
-	if (kiek % 2 == 0)
-	{
-		double laikMed;
-		laikMed = ((mok[i].paz[kiek / 2] + mok[i].paz[kiek / 2 - 1]) / 2.0);
-		mok[i].rezult = skaiciavimas(laikMed, mok, i);
-		return mok[i].rezult;
-	}
-	else
-	{
-		mok[i].rezult = skaiciavimas(mok[i].paz[kiek / 2], mok, i);
-		return mok[i].rezult;
-	}
-}
+	mok.rezult = skaiciavimas(vid, mok);
+	return mok.rezult;
+}*/
+
+
+
 /*void pazymiuIvestis(std::vector<Mokinys> &mok, int a, int kiek)
 {
 	int i = 0;
@@ -112,7 +82,7 @@ double skaiciavimasMed(std::vector<Mokinys> &mok, int i, int kiek)
 	}
 }*/
 
-void pazymiuIvestis(Mokinys mok, int kiek)
+/*void pazymiuIvestis(Mokinys mok, int kiek)
 {
 	int i = 0;
 	for (int j = 0; j < kiek; j++)
@@ -125,70 +95,8 @@ void pazymiuIvestis(Mokinys mok, int kiek)
 		mok.paz[i] = pazLaik;
 		i++;
 	}
-}
+}*/
 
-void bufer_nusk(std::string read_vardas, std::string write_vardas)
-{
-	std::vector<std::string> splited;
-	std::string eil, tmp;
-	std::stringstream my_buffer;
-
-	// nuskaitymas i bufferi
-	std::ifstream open_f(read_vardas);
-	my_buffer << open_f.rdbuf();
-	open_f.close();
-	std::getline(my_buffer, tmp);
-	std::vector<std::string> tmpeilDalys = split(tmp, ' ');
-	int kiek = 0;
-	for (std::string &a : tmpeilDalys)
-	{
-		kiek++;
-	}
-	// cout<<kiek;
-	std::vector<Mokinys> mokiniai;
-
-	// bufferio padalijimas i eiluciu vektoriu
-	while (my_buffer)
-	{
-		if (!my_buffer.eof())
-		{
-			std::getline(my_buffer, eil);
-
-			std::vector<std::string> eilDalys = split(eil, ' ');
-
-			Mokinys mok = Mokinys();
-			mok.vardas = eilDalys[0];
-			mok.pavarde = eilDalys[1];
-
-			mok.paz = new int[kiek];
-			for (int i = 0; i < kiek - 3; i++)
-			{
-				mok.paz[i] = std::stoi(eilDalys[2 + i]);
-			}
-
-			mok.egz = std::stod(eilDalys[kiek - 1]);
-
-			mokiniai.push_back(mok);
-			// cout<<mokiniai.vardas;
-			splited.push_back(eil);
-		}
-		else
-			break;
-	}
-
-	isvestis(mokiniai, kiek - 3);
-	/*
-	//vektroiaus konvertavimas i viena eilute
-	std::string outputas = "";
-	for (std::string &a : splited)
-		(a.compare(*splited.rbegin()) != 0) ? outputas += a + "\n" : outputas += a;
-	splited.clear();
-
-	//Failo isvedimas per viena eilute
-	std::ofstream out_f(write_vardas);
-	out_f << outputas;
-	out_f.close();*/
-}
 std::vector<std::string> split(std::string str, char delimiter)
 {
 	std::vector<std::string> result;
@@ -203,7 +111,7 @@ std::vector<std::string> split(std::string str, char delimiter)
 
 	return result;
 }
-std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
+/*std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 {
 	Mokinys laikinas;
 	for (Mokinys &m : mok)
@@ -216,14 +124,14 @@ std::vector<Mokinys> sortabc(std::vector<Mokinys> mok)
 			}
 
 	return mok;
-}
+}*/
 void SarasuGeneravimas()
 {
 	std::vector<std::vector<Mokinys>> sarasuSarasas;
-	int n = 1000;
-	int kiek = 5;
+	int n = 1000; //kiek mokiniu pirmame faile
+	int kiek = 5; // kiek pazymiu vienam mokiniui
 
-	//cout << "pradzia" << endl;
+	// cout << "pradzia" << endl;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -231,11 +139,10 @@ void SarasuGeneravimas()
 		for (int j = 0; j < n; j++)
 		{
 			Mokinys mok = Mokinys();
-			//cout << "mokinys sukurtas" << endl;
+			// cout << "mokinys sukurtas" << endl;
 
 			mok.vardas = "Vardas" + std::to_string(j + 1);
 			mok.pavarde = "Pavarde" + std::to_string(j + 1);
-			mok.egz = rand() % 10 + 1;
 
 			mok.paz = new int[kiek];
 			for (int k = 0; k < kiek; k++)
@@ -244,9 +151,9 @@ void SarasuGeneravimas()
 				pazLaik = rand() % 10 + 1;
 				mok.paz[k] = pazLaik;
 			}
-
+			mok.egz = rand() % 10 + 1;
 			mokSarasas.push_back(mok);
-			//cout << "mokinys idetas" << endl;
+			// cout << "mokinys idetas" << endl;
 
 			// sarasuSarasas[i][j].vardas="Vardas";
 			// cout << sarasuSarasas[i][j].vardas;
@@ -261,10 +168,10 @@ void SarasuGeneravimas()
 void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas, int kiek)
 {
 
-
 	for (int i = 0; i < sarasuSarasas.size(); i++)
 	{
-		string writeFile = "Mokiniai" + std::to_string(sarasuSarasas[i].size()) + ".txt";
+		std::string writeFile = "Mokiniai" + std::to_string(sarasuSarasas[i].size()) + ".txt";
+		std::string writeFileRez = "Mokiniai" + std::to_string(sarasuSarasas[i].size()) + "Rez.txt";
 		std::ofstream out_f(writeFile);
 		std::vector<Mokinys> mokSarasas;
 		for (int j = 0; j < sarasuSarasas[i].size(); j++)
@@ -278,9 +185,139 @@ void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas, int kiek)
 			}
 			out_f << endl;
 		}
-		//cout << i + 1 << " saraso pabaiga" << endl;
+		// cout << i + 1 << " saraso pabaiga" << endl;
+		bufer_nusk(writeFile, writeFileRez);
 		out_f.close();
+	}
+
+	// bufer_nusk(writeFile, write_vardas);
+
+	// cout << "pabaiga" << endl;
+}
+void bufer_nusk(std::string read_vardas, std::string write_vardas)
+{
+
+
+	std::vector<std::string> splited;
+	std::string eil, tmp;
+	std::stringstream my_buffer;
+
+	// nuskaitymas i bufferi
+	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+	std::ifstream open_f(read_vardas);
+
+	my_buffer << open_f.rdbuf();
+
+	open_f.close();
+	int kiek=0;
+
+	std::vector<Mokinys> mokiniai;
+
+	// bufferio padalijimas i eiluciu vektoriu
+	while (my_buffer)
+	{
+		//cout << "ciklo pradzia " << endl;
+
+		if (!my_buffer.eof())
+		{
+			std::getline(my_buffer, eil);
+			//cout << "ciklo viduj " << eil << endl;
+			if (eil.size() > 0)
+			{
+				std::vector<std::string> eilDalys = split(eil, ' ');
+				for (std::string &a : eilDalys)
+				{
+					kiek++;
+				}
+
+				Mokinys mok = Mokinys();
+				mok.vardas = eilDalys[0];
+				mok.pavarde = eilDalys[1];
+
+				mok.paz = new int[kiek];
+				for (int i = 0; i < kiek - 3; i++)
+				{
+					mok.paz[i] = std::stoi(eilDalys[2 + i]);
+				}
+
+				mok.egz = std::stoi(eilDalys[kiek - 1]);
+				kiek=0;
+
+				mokiniai.push_back(mok);
+				// cout<<mokiniai.vardas;
+				splited.push_back(eil);
+			}
+			else
+			{
+				break;
+			}
+
+			//cout << "prad" << endl;
+		}
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end-start; // Skirtumas (s)
+	std::cout << "Failo nuskaitymo su "<< mokiniai.size()<<" mokiniu laikas: "<< diff.count() << " s\n";
+
+	std::vector<Mokinys> ProtingiMokiniai;
+	std::vector<Mokinys> NeprotingiMokiniai;
+	int vid;
+	for(int i=0;i<mokiniai.size();i++)
+	{ 
+		int sum=0;
+		for(int j=0;j<kiek - 3;j++)
+		{
+			sum+=mokiniai[i].paz[j];
+
+		}
+		
+		vid=sum/(kiek - 3)*1.0;
+		
+		if(vid>=5)
+		{
+			
+			ProtingiMokiniai.push_back(mokiniai[i]);
+			
+
+		}
+		else{
+			NeprotingiMokiniai.push_back(mokiniai[i]);
+		}
+		
 
 	}
-	//cout << "pabaiga" << endl;
+	cout<<"po skirstymo";
+	cout<<ProtingiMokiniai[0].vardas<<endl;
+	cout<<NeprotingiMokiniai[0].vardas<<endl;
+
+
+
+	for(int i=0;i<ProtingiMokiniai.size();i++)
+	{
+		cout<<ProtingiMokiniai[i].vardas<<endl;
+	}
+
+
+	
+	
+	
+	//cout<<"Press any key to continue... ";
+	//string a;
+	//cin>>a;
+
+
+
+	/*for(int i=0;i<mokiniai.size();i++)
+	{
+		cout<<mokiniai[i].vardas<<" "<<mokiniai[i].pavarde<<" ";
+		for (int j = 0; j < 2; j++)
+		{
+			cout<<mokiniai[i].paz[j]<<" ";
+		}
+		cout<<mokiniai[i].egz<<endl;
+
+	}
+	*/
+
 }
+
