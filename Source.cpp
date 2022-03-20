@@ -4,11 +4,6 @@ int main()
 {
 	
 	std::ifstream open_f("studentai.txt");
-	/*if(open_f.peek() == std::ifstream::traits_type::eof())
-	{
-		cout<<"Tuscia";
-	}
-	*/
 	try{
 		if(!open_f){
 			throw 1;
