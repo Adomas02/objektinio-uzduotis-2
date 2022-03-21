@@ -76,8 +76,8 @@ void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas, int kiek)
 		std::chrono::duration<double> diff0 = end0 - start0; // Skirtumas (s)
 		std::cout << "Failo sukurimo su " << sarasuSarasas[i].size() << " mokiniu laikas: " << diff0.count() << " s\n";
 
-		//bufer_nusk(writeFile, writeFileRez);
-		
+		// bufer_nusk(writeFile, writeFileRez);
+
 		// bendro laiko pabaiga
 
 		cout << endl;
@@ -95,6 +95,16 @@ void bufer_nusk(std::string read_vardas)
 	auto start = std::chrono::high_resolution_clock::now();
 	auto st = start;
 	std::ifstream open_f(read_vardas);
+	try
+	{
+		if (!open_f){
+			throw 1;
+		}
+			
+	}catch (int x){
+		cout<<"Failas neegzistuoja "<<endl;
+		return;
+	}
 
 	my_buffer << open_f.rdbuf();
 
