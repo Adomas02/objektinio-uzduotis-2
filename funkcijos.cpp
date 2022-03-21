@@ -109,6 +109,13 @@ void bufer_nusk(std::string read_vardas)
 	my_buffer << open_f.rdbuf();
 
 	open_f.close();
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
+	std::cout << "Failo nuskaitymo laikas: " << diff.count() << " s\n";
+
+	auto start5 = std::chrono::high_resolution_clock::now();
+	auto st5 = start5;
+
 	int kiek = 0;
 	int toliauKiek;
 
@@ -157,9 +164,11 @@ void bufer_nusk(std::string read_vardas)
 			// cout << "prad" << endl;
 		}
 	}
-	auto end = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
-	std::cout << "Failo nuskaitymo su " << mokiniai.size() << " mokiniu laikas: " << diff.count() << " s\n";
+
+	auto end5 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff5 = end5 - start5; // Skirtumas (s)
+	std::cout << "Failo paruosimo laikas: " << diff5.count() << " s\n";
+
 
 	// Skirstymas i dvi grupes
 	auto start1 = std::chrono::high_resolution_clock::now();
