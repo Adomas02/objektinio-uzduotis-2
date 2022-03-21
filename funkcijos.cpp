@@ -75,18 +75,17 @@ void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas, int kiek)
 		auto end0 = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> diff0 = end0 - start0; // Skirtumas (s)
 		std::cout << "Failo sukurimo su " << sarasuSarasas[i].size() << " mokiniu laikas: " << diff0.count() << " s\n";
-		bufer_nusk(writeFile, writeFileRez);
+
+		//bufer_nusk(writeFile, writeFileRez);
 		
 		// bendro laiko pabaiga
-		auto end4 = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<double> diff4 = end4 - start0; // Skirtumas (s)
-		std::cout << sarasuSarasas[i].size()<< " Bendras laikas: " << diff4.count() << " s\n";
+
 		cout << endl;
 
 		out_f.close();
 	}
 }
-void bufer_nusk(std::string read_vardas, std::string write_vardas)
+void bufer_nusk(std::string read_vardas)
 {
 	std::vector<std::string> splited;
 	std::string eil, tmp;
@@ -188,6 +187,10 @@ void bufer_nusk(std::string read_vardas, std::string write_vardas)
 
 	// Neprotingu isvedimas
 	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+
+	auto end4 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
+	std::cout << mokSk << " Bendras laikas: " << diff4.count() << " s\n";
 }
 double skaiciavimasVid(Mokinys mokiniai, int toliauKiek)
 {

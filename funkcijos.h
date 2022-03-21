@@ -37,7 +37,7 @@ struct Mokinys
 //void rikiavimas(std::vector<Mokinys> &mok, int a,int kiek);
 //double skaiciavimasMed(std::vector<Mokinys> &mok, int i,int kiek);
 //void pazymiuIvestis(Mokinys mok, int kiek);
-void bufer_nusk(std::string read_vardas, std::string write_vardas);
+void bufer_nusk(std::string read_vardas);
 std::vector<std::string> split(std::string str, char delimiter);
 //std::vector<Mokinys> sortabc(std::vector<Mokinys> mok);
 void SarasuGeneravimas();
