@@ -126,27 +126,14 @@ void bufer_nusk_list(std::string read_vardas)
 	double galutinis;
 	
 	auto mokiniai_front = mokiniai.begin();
-    std::advance(mokiniai_front, 0);
-    Mokinys tmpmok=*mokiniai_front;
-	tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
-		if (tmpmok.rezult >= 5)
-		{
-			ProtingiMokiniai.push_back(tmpmok);
-		}
-		else
-		{
-			NeprotingiMokiniai.push_back(tmpmok);
-		}
+    Mokinys tmpmok;
+
 
 	for (int i = 0; i < mokiniai.size(); i++)
 	{
-		
 		tmpmok = *std::next(mokiniai_front, i);
-
-
+        
 		tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
-
-
 		if (tmpmok.rezult >= 5)
 		{
 			ProtingiMokiniai.push_back(tmpmok);
@@ -163,10 +150,10 @@ void bufer_nusk_list(std::string read_vardas)
 	std::cout << "Iraso dalinimo i dvi grupes laikas: " << diff1.count() << " s\n";
 
 	// Protingu isvedimas
-	//protinguIsvedimas(ProtingiMokiniai, mokSk);
+	protinguIsvedimas(ProtingiMokiniai, mokSk);
 
 	// Neprotingu isvedimas
-	//neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
 
 	auto end4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
@@ -184,7 +171,7 @@ void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
     std::advance(ProtigiMokiniai_front, 0);
     Mokinys tmpmok=*ProtigiMokiniai_front;
 
-    //out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+    out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
 
 	for (int i = 1; i < ProtingiMokiniai.size(); i++)
 	{
