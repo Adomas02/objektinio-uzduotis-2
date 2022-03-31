@@ -125,24 +125,23 @@ void bufer_nusk_list(std::string read_vardas)
 	std::list<Mokinys> NeprotingiMokiniai;
 	double galutinis;
 	
-	auto mokiniai_front = mokiniai.begin();
-    Mokinys tmpmok;
+	//auto mokiniai_front = mokiniai.begin();
+    //Mokinys tmpmok;
 
-
-	for (int i = 0; i < mokiniai.size(); i++)
+	for(auto el:mokiniai)
 	{
-		tmpmok = *std::next(mokiniai_front, i);
-        
-		tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
-		if (tmpmok.rezult >= 5)
+		
+		el.rezult=skaiciavimasVid(el,toliauKiek);
+		if (el.rezult >= 5)
 		{
-			ProtingiMokiniai.push_back(tmpmok);
+			ProtingiMokiniai.push_back(el);
 		}
 		else
 		{
-			NeprotingiMokiniai.push_back(tmpmok);
+			NeprotingiMokiniai.push_back(el);
 		}
 	}
+
 	int mokSk = mokiniai.size();
 	mokiniai.clear();
 	auto end1 = std::chrono::high_resolution_clock::now();
@@ -167,18 +166,13 @@ void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
 
 	std::string writeFileRez = "List_Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
-    auto ProtigiMokiniai_front = ProtingiMokiniai.begin();
-    std::advance(ProtigiMokiniai_front, 0);
-    Mokinys tmpmok=*ProtigiMokiniai_front;
 
-    out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
-
-	for (int i = 1; i < ProtingiMokiniai.size(); i++)
+   	for(auto& el:ProtingiMokiniai)
 	{
-        tmpmok = *std::next(ProtigiMokiniai_front, i);
-
-		out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+		
+		out_f << el.vardas << " " << fixed << setprecision(2) << el.rezult << endl;
 	}
+
 	out_f.close();
 	auto end2 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
@@ -191,17 +185,10 @@ void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk)
 
 	std::string writeFileRez = "List_NeProtingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
-    auto NeprotingiMokiniai_front = NeprotingiMokiniai.begin();
-    std::advance(NeprotingiMokiniai_front, 0);
-    Mokinys tmpmok=*NeprotingiMokiniai_front;
-
-    out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
-
-	for (int i = 1; i < NeprotingiMokiniai.size(); i++)
+  	for(auto& el:NeprotingiMokiniai)
 	{
-        tmpmok = *std::next(NeprotingiMokiniai_front, i);
-
-		out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+		
+		out_f << el.vardas << " " << fixed << setprecision(2) << el.rezult << endl;
 	}
 	out_f.close();
 	auto end2 = std::chrono::high_resolution_clock::now();
