@@ -48,3 +48,5 @@ double skaiciavimasVid(Mokinys mokiniai,int toliauKiek);
 void protinguIsvedimas(std::vector<Mokinys> ProtingiMokiniai,int mokSk);
 void neProtinguIsvedimas(std::vector<Mokinys> NeprotingiMokiniai,int mokSk);
 void bufer_nusk_list(std::string read_vardas);
+void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk);
+void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk);

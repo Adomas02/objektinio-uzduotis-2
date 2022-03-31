@@ -42,18 +42,20 @@ void bufer_nusk_list(std::string read_vardas)
 	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
 	std::cout << "Failo nuskaitymo laikas: " << diff.count() << " s\n";
 
+    
 	auto start5 = std::chrono::high_resolution_clock::now();
 	auto st5 = start5;
 
 	int kiek = 0;
 	int toliauKiek;
-
+   
 	std::list<Mokinys> mokiniai;
-
+    
 	// bufferio padalijimas i eiluciu vektoriu
 	while (my_buffer)
 	{
-		// cout << "ciklo pradzia " << endl;
+        
+		 //cout << "ciklo pradzia " << endl;
 
 		if (!my_buffer.eof())
 		{
@@ -123,30 +125,34 @@ void bufer_nusk_list(std::string read_vardas)
 	std::list<Mokinys> NeprotingiMokiniai;
 	double galutinis;
 	
-	
-	for (int i = 0; i < mokiniai.size(); i++)
-	{
-		auto mokiniai_front = mokiniai.begin();
-		std::advance(mokiniai_front, i);
-
-		Mokinys tmpmok=*mokiniai_front;
-
-		tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
-
-		//std::advance(mokiniai_front, i);
-		//*mokiniai_front.rezult = skaiciavimasVid(mokiniai[i], toliauKiek);
-		//mokiniai[i].rezult = skaiciavimasVid(mokiniai[i], toliauKiek);
-
+	auto mokiniai_front = mokiniai.begin();
+    std::advance(mokiniai_front, 0);
+    Mokinys tmpmok=*mokiniai_front;
+	tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
 		if (tmpmok.rezult >= 5)
 		{
-
-			// mokiniai[i].rezult=galutinis;
 			ProtingiMokiniai.push_back(tmpmok);
 		}
 		else
 		{
-			// mokiniai[i].rezult=galutinis;
-			// cout<<mokiniai[i].rezult<<endl;
+			NeprotingiMokiniai.push_back(tmpmok);
+		}
+
+	for (int i = 0; i < mokiniai.size(); i++)
+	{
+		
+		tmpmok = *std::next(mokiniai_front, i);
+
+
+		tmpmok.rezult=skaiciavimasVid(tmpmok,toliauKiek);
+
+
+		if (tmpmok.rezult >= 5)
+		{
+			ProtingiMokiniai.push_back(tmpmok);
+		}
+		else
+		{
 			NeprotingiMokiniai.push_back(tmpmok);
 		}
 	}
@@ -166,4 +172,52 @@ void bufer_nusk_list(std::string read_vardas)
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
 	std::cout << mokSk << " Bendras laikas: " << diff4.count() << " s\n";
 	std::cout <<endl;
+}
+void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
+{
+	auto start2 = std::chrono::high_resolution_clock::now();
+	auto st2 = start2;
+
+	std::string writeFileRez = "List_Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
+	std::ofstream out_f(writeFileRez);
+    auto ProtigiMokiniai_front = ProtingiMokiniai.begin();
+    std::advance(ProtigiMokiniai_front, 0);
+    Mokinys tmpmok=*ProtigiMokiniai_front;
+
+    //out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+
+	for (int i = 1; i < ProtingiMokiniai.size(); i++)
+	{
+        tmpmok = *std::next(ProtigiMokiniai_front, i);
+
+		out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+	}
+	out_f.close();
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
+}
+void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk)
+{
+	auto start2 = std::chrono::high_resolution_clock::now();
+	auto st2 = start2;
+
+	std::string writeFileRez = "List_NeProtingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
+	std::ofstream out_f(writeFileRez);
+    auto NeprotingiMokiniai_front = NeprotingiMokiniai.begin();
+    std::advance(NeprotingiMokiniai_front, 0);
+    Mokinys tmpmok=*NeprotingiMokiniai_front;
+
+    out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+
+	for (int i = 1; i < NeprotingiMokiniai.size(); i++)
+	{
+        tmpmok = *std::next(NeprotingiMokiniai_front, i);
+
+		out_f << tmpmok.vardas << " " << fixed << setprecision(2) << tmpmok.rezult << endl;
+	}
+	out_f.close();
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
 }
