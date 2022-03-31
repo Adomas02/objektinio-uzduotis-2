@@ -10,6 +10,8 @@
 #include <sstream>
 #include <chrono>
 #include <boost/algorithm/algorithm.hpp>
+#include <list>
+#include <iterator>
 
 
 using std::cin;
@@ -45,3 +47,4 @@ void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas,int kiek);
 double skaiciavimasVid(Mokinys mokiniai,int toliauKiek);
 void protinguIsvedimas(std::vector<Mokinys> ProtingiMokiniai,int mokSk);
 void neProtinguIsvedimas(std::vector<Mokinys> NeprotingiMokiniai,int mokSk);
+void bufer_nusk_list(std::string read_vardas);

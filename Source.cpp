@@ -18,11 +18,37 @@ int main()
 		cin>>a;
 		if (a == 1)
 		{
+			int b;
+			cout<<"Su kuriuo konteineriu norite atlikti testavima?"<<endl;
+			cout<<"0 - std::vector"<<endl;
+			cout<<"1 - std::list"<<endl;
+			cout<<"2 - std::deque"<<endl;
+			cin>>b;
+			if(b==0)
+			{
 			string failoPavadinimas;
 			cout << "Iveskite kokio failo rezultatu norit ";
 			cin >> failoPavadinimas;
 			cout << endl;
-			bufer_nusk(failoPavadinimas);
+			bufer_nusk(failoPavadinimas);				
+			}
+			else if(b==1)
+			{
+			string failoPavadinimas;
+			cout << "Iveskite kokio failo rezultatu norit ";
+			cin >> failoPavadinimas;
+			cout<<endl;
+			bufer_nusk_list(failoPavadinimas);				
+				//funkcija su std::list
+			}
+			else if(b==2)
+			{
+			string failoPavadinimas;
+			cout << "Iveskite kokio failo rezultatu norit ";
+			cin >> failoPavadinimas;				
+				//funkcija su std::deque
+			}
+
 		}
 	}
 
