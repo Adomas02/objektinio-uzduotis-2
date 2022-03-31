@@ -12,6 +12,7 @@
 #include <boost/algorithm/algorithm.hpp>
 #include <list>
 #include <iterator>
+#include <deque>
 
 
 using std::cin;
@@ -50,3 +51,9 @@ void neProtinguIsvedimas(std::vector<Mokinys> NeprotingiMokiniai,int mokSk);
 void bufer_nusk_list(std::string read_vardas);
 void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk);
 void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk);
+std::deque<std::string> split_deq(std::string str, char delimiter);
+std::list<std::string> split_list(std::string str, char delimiter);
+void protinguIsvedimas(std::deque<Mokinys> ProtingiMokiniai, int mokSk);
+void neProtinguIsvedimas(std::deque<Mokinys> NeprotingiMokiniai, int mokSk);
+
+void bufer_nusk_deq(std::string read_vardas);

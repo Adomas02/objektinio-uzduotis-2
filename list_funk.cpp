@@ -156,7 +156,7 @@ void bufer_nusk_list(std::string read_vardas)
 
 	auto end4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
-	std::cout << mokSk << " Bendras laikas: " << diff4.count() << " s\n";
+	std::cout << mokSk << " Bendras su list laikas: " << diff4.count() << " s\n";
 	std::cout <<endl;
 }
 void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)

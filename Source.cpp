@@ -45,7 +45,9 @@ int main()
 			{
 			string failoPavadinimas;
 			cout << "Iveskite kokio failo rezultatu norit ";
-			cin >> failoPavadinimas;				
+			cin >> failoPavadinimas;
+			cout<<endl;
+			bufer_nusk_deq(failoPavadinimas);				
 				//funkcija su std::deque
 			}
 
