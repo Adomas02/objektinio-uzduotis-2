@@ -149,11 +149,13 @@ void bufer_nusk_list(std::string read_vardas)
 	std::cout << "Iraso dalinimo i dvi grupes laikas: " << diff1.count() << " s\n";
 
 	// Protingu isvedimas
-	//protinguIsvedimas(ProtingiMokiniai, mokSk);
+	protinguIsvedimas(ProtingiMokiniai, mokSk);
 
 	// Neprotingu isvedimas
-	//neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
-
+	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+	
+	NeprotingiMokiniai.clear();
+	ProtingiMokiniai.clear();
 	auto end4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
 	std::cout << mokSk << " Bendras su list laikas: " << diff4.count() << " s\n";

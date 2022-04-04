@@ -110,10 +110,8 @@ void bufer_nusk(std::string read_vardas)
 	double galutinis;
 	for (int i = 0; i < mokiniai.size(); i++)
 	{
-
 		// galutinis=sakiciavimasVid(mokiniai[i],toliauKiek);
 		mokiniai[i].rezult = skaiciavimasVid(mokiniai[i], toliauKiek);
-
 		if (mokiniai[i].rezult >= 5)
 		{
 
