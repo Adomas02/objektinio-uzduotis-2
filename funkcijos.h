@@ -13,6 +13,7 @@
 #include <list>
 #include <iterator>
 #include <deque>
+#include <algorithm> 
 
 
 using std::cin;

@@ -14,6 +14,8 @@ std::list<std::string> split_list(std::string str, char delimiter)
 
 	return result;
 }
+bool Pagal_Varda(const Mokinys &a, const Mokinys &b)
+{ return a.vardas < b.vardas; }
 void bufer_nusk_list(std::string read_vardas)
 {
 	std::list<std::string> splited;
@@ -169,6 +171,11 @@ void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
 	std::string writeFileRez = "List_Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
 
+	ProtingiMokiniai.sort(Pagal_Varda);
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
+
    	for(auto& el:ProtingiMokiniai)
 	{
 		
@@ -176,9 +183,7 @@ void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
 	}
 
 	out_f.close();
-	auto end2 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
+
 }
 void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk)
 {
@@ -187,13 +192,17 @@ void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk)
 
 	std::string writeFileRez = "List_NeProtingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
+	
+	NeprotingiMokiniai.sort(Pagal_Varda);
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Neprotingu rusiavimo laikas: " << diff2.count() << " s\n";
+
   	for(auto& el:NeprotingiMokiniai)
 	{
 		
 		out_f << el.vardas << " " << fixed << setprecision(2) << el.rezult << endl;
 	}
 	out_f.close();
-	auto end2 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
+
 }

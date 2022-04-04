@@ -150,11 +150,13 @@ void bufer_nusk_deq(std::string read_vardas)
 	std::cout << "Iraso dalinimo i dvi grupes laikas: " << diff1.count() << " s\n";
 
 	// Protingu isvedimas
-	//protinguIsvedimas(ProtingiMokiniai, mokSk);
+	protinguIsvedimas(ProtingiMokiniai, mokSk);
 
 	// Neprotingu isvedimas
-	//neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
 
+	NeprotingiMokiniai.clear();
+	ProtingiMokiniai.clear();
 	auto end4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
 	std::cout << mokSk << " Bendras laikas su deque: " << diff4.count() << " s\n";
@@ -169,6 +171,11 @@ void protinguIsvedimas(std::deque<Mokinys> ProtingiMokiniai, int mokSk)
 	std::string writeFileRez = "deq_Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
 
+	sort(ProtingiMokiniai.begin(),ProtingiMokiniai.end(),[](Mokinys& x, Mokinys& y){return x.vardas<y.vardas;});
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
+
    	for(auto& el:ProtingiMokiniai)
 	{
 		
@@ -176,9 +183,7 @@ void protinguIsvedimas(std::deque<Mokinys> ProtingiMokiniai, int mokSk)
 	}
 
 	out_f.close();
-	auto end2 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
+
 }
 void neProtinguIsvedimas(std::deque<Mokinys> NeprotingiMokiniai, int mokSk)
 {
@@ -187,13 +192,17 @@ void neProtinguIsvedimas(std::deque<Mokinys> NeprotingiMokiniai, int mokSk)
 
 	std::string writeFileRez = "deq_NeProtingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
+
+	sort(NeprotingiMokiniai.begin(),NeprotingiMokiniai.end(),[](Mokinys& x, Mokinys& y){return x.vardas<y.vardas;});
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
+
   	for(auto& el:NeprotingiMokiniai)
 	{
 		
 		out_f << el.vardas << " " << fixed << setprecision(2) << el.rezult << endl;
 	}
 	out_f.close();
-	auto end2 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	std::cout << "Protingu isvedimo laikas: " << diff2.count() << " s\n";
+
 }
