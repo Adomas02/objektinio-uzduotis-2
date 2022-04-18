@@ -1,11 +1,31 @@
 # objektinio-uzduotis
 
-## Programa skirta palyginti skirtingų c++ konteinerių veikimo spartą
+
+### Įdiegimo instrukcija:<br>
+- Atsisiųsti failus
+- Konsolėje suvesti komandą: make
+- Konsolėje suvesti komanda: .\run
 
 ### Paleidus programa jums reikeiės:<br>
 - Pasirinkti ar norite generuoti failus ar ne
 - Su kokiu konteineriu norite rezultatų
 - Iš kokio failo norite imti duomenis
+## v1.0 Programa skirta palyginti skirtingų c++ konteinerių veikimo bei skirtingų strategijų spartą beiu pridėtas makefile
+### Programos veikimo metu matome skirtingų strategijų rezultatus:<br>
+-Pirmoji strategija kuria du naujus konteinerius
+-Antroji kuria vieną naują konteinerį, o iš pradinio trina nereikalingus elementus
+### Testavimo rezultatai:<br>
+- 10000000 įrašu su vector
+  -Kuriant du naujus konteinerius laikas: 3.58194s atminties naudojimas padidėjo 8% daugiau
+  -Kuriant vieną naują konteinerį laikas: 3.97554s atminties naudojimas padidėjo 5% daugiau
+ - 10000000 įrašu su list
+  -Kuriant du naujus konteinerius laikas: 3.49514s atminties naudojimas padidėjo 7% daugiau
+  -Kuriant vieną naują konteinerį laikas: 4.47392s atminties naudojimas padidėjo 4% daugiau
+ - 10000000 įrašu su deque
+   -Kuriant du naujus konteinerius laikas: 2.8237s atminties naudojimas padidėjo 10% daugiau
+   -Kuriant vieną naują konteinerį laikas: 4.26029s atminties naudojimas padidėjo 6% daugiau 
+
+## v0.5 Programa skirta palyginti skirtingų c++ konteinerių veikimo spartą
 
 ### Rezultate matysite failo nuskaitymo laiką, failo paruosimo darbui laiką ir duomenų skirstymo į dvi grupes laiką
 
