@@ -13,7 +13,9 @@
 #include <list>
 #include <iterator>
 #include <deque>
-#include <algorithm> 
+#include <algorithm>
+#include <numeric>
+ 
 
 
 using std::cin;
@@ -23,6 +25,8 @@ using std::fixed;
 using std::setprecision;
 using std::setw;
 using std::string;
+
+
 
 
 

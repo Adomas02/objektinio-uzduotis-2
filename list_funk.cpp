@@ -145,11 +145,12 @@ void bufer_nusk_list(std::string read_vardas)
 	}
 
 	int mokSk = mokiniai.size();
-	mokiniai.clear();
+	//mokiniai.clear();
 	auto end1 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff1 = end1 - start1; // Skirtumas (s)
-	std::cout << "Iraso dalinimo i dvi grupes laikas: " << diff1.count() << " s\n";
+	std::cout << "Iraso dalinimo i dvi grupes kuriant du konteinerius laikas: " << diff1.count() << " s\n";
 
+	
 	// Protingu isvedimas
 	protinguIsvedimas(ProtingiMokiniai, mokSk);
 
