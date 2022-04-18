@@ -366,3 +366,7 @@ List_Protingi_Mokiniai_is100000_Rez.txt
 *.txt
 .vscode/c_cpp_properties.json
 .vscode/c_cpp_properties.json
+deq_funk.o
+list_funk.o
+SarasuGeneravimas.o
+vect_funkcijos.o
