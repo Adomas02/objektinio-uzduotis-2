@@ -112,7 +112,7 @@ void bufer_nusk_deq(std::string read_vardas)
 				break;
 			}
 
-			// cout << "prad" << endl;
+			
 		}
 	}
 	auto end5 = std::chrono::high_resolution_clock::now();
@@ -163,10 +163,9 @@ void bufer_nusk_deq(std::string read_vardas)
 	for(auto el:mokiniai)
 	{
 		
-		//el.rezult=skaiciavimasVid(el,toliauKiek);
 		if (el.rezult >= 5)
 		{
-			//ProtingiMokiniai.push_back(el);
+			
 		}
 		else
 		{
@@ -175,7 +174,6 @@ void bufer_nusk_deq(std::string read_vardas)
 	}
 
 	std::erase_if(mokiniai, [](Mokinys x) { return x.rezult < 5; });
-  // auto erased =
 	auto end11 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff11 = end11 - start11; // Skirtumas (s)
 	std::cout << "Iraso dalinimo i dvi grupes kuriant viena konteineri laikas: " << diff11.count() << " s\n";
