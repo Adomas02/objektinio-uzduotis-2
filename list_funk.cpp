@@ -155,7 +155,7 @@ void bufer_nusk_list(std::string read_vardas)
 
 	// Neprotingu isvedimas
 	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
-
+	
 
 
 	// Skirstymas i dvi grupes antra strategija
