@@ -64,3 +64,5 @@ void neProtinguIsvedimas(std::deque<Mokinys> NeprotingiMokiniai, int mokSk);
 
 void bufer_nusk_deq(std::string read_vardas);
 bool Pagal_Varda(const Mokinys &a, const Mokinys &b);
+void PirmaStrategija(std::list<Mokinys> mokiniai);
+void AntraStrategija(std::list<Mokinys> mokiniai);

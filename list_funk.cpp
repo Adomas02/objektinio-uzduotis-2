@@ -120,80 +120,16 @@ void bufer_nusk_list(std::string read_vardas)
 	std::chrono::duration<double> diff5 = end5 - start5; // Skirtumas (s)
 	std::cout << "Failo paruosimo laikas: " << diff5.count() << " s\n";
 
-
-	// Skirstymas i dvi grupes pirma strategija
-	auto start1 = std::chrono::high_resolution_clock::now();
-	auto st1 = start1;
-	std::list<Mokinys> ProtingiMokiniai;
-	std::list<Mokinys> NeprotingiMokiniai;
-	double galutinis;
-	
-
-	for(auto el:mokiniai)
-	{
-		
-		
-		if (el.rezult >= 5)
-		{
-			ProtingiMokiniai.push_back(el);
-		}
-		else
-		{
-			NeprotingiMokiniai.push_back(el);
-		}
-	}
-
-	int mokSk = mokiniai.size();
-	//mokiniai.clear();
-	auto end1 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff1 = end1 - start1; // Skirtumas (s)
-	std::cout << "Iraso dalinimo i dvi grupes kuriant du konteinerius laikas: " << diff1.count() << " s\n";
+	PirmaStrategija(mokiniai);
 
 	
-	// Protingu isvedimas
-	protinguIsvedimas(ProtingiMokiniai, mokSk);
+	AntraStrategija(mokiniai);
 
-	// Neprotingu isvedimas
-	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+
 	
-
-
-	// Skirstymas i dvi grupes antra strategija
-	auto start11 = std::chrono::high_resolution_clock::now();
-	auto st11 = start11;
-	std::list<Mokinys> NeprotingiMokiniai2;
-	
-	for(auto el:mokiniai)
-	{
-		
-		
-		if (el.rezult >= 5)
-		{
-		}
-		else
-		{
-			NeprotingiMokiniai2.push_back(el);
-		}
-	}
-
-	std::erase_if(mokiniai, [](Mokinys x) { return x.rezult < 5; });
-	auto end11 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff11 = end11 - start11; // Skirtumas (s)
-	std::cout << "Iraso dalinimo i dvi grupes kuriant viena konteineri laikas: " << diff11.count() << " s\n";
-
-	// Protingu isvedimas
-	protinguIsvedimas(mokiniai, mokSk);
-
-	// Neprotingu isvedimas
-	neProtinguIsvedimas(NeprotingiMokiniai2, mokSk);
-
-	NeprotingiMokiniai2.clear();
-	mokiniai.clear();
-	NeprotingiMokiniai.clear();
-	ProtingiMokiniai.clear();
 	auto end4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
-	std::cout << mokSk << " Bendras su list laikas: " << diff4.count() << " s\n";
+	std::cout << mokiniai.size() << " Bendras su list laikas: " << diff4.count() << " s\n";
 	std::cout <<endl;
 }
 void protinguIsvedimas(std::list<Mokinys> ProtingiMokiniai, int mokSk)
@@ -238,4 +174,79 @@ void neProtinguIsvedimas(std::list<Mokinys> NeprotingiMokiniai, int mokSk)
 	}
 	out_f.close();
 
+}
+
+void PirmaStrategija(std::list<Mokinys> mokiniai)
+{
+// Skirstymas i dvi grupes pirma strategija
+	auto start1 = std::chrono::high_resolution_clock::now();
+	auto st1 = start1;
+	std::list<Mokinys> ProtingiMokiniai;
+	std::list<Mokinys> NeprotingiMokiniai;
+	double galutinis;
+	
+
+	for(auto el:mokiniai)
+	{
+		
+		
+		if (el.rezult >= 5)
+		{
+			ProtingiMokiniai.push_back(el);
+		}
+		else
+		{
+			NeprotingiMokiniai.push_back(el);
+		}
+	}
+
+	int mokSk = mokiniai.size();
+	//mokiniai.clear();
+	auto end1 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff1 = end1 - start1; // Skirtumas (s)
+	std::cout << "Iraso dalinimo i dvi grupes kuriant du konteinerius laikas: " << diff1.count() << " s\n";
+
+	
+	// Protingu isvedimas
+	protinguIsvedimas(ProtingiMokiniai, mokSk);
+
+	// Neprotingu isvedimas
+	neProtinguIsvedimas(NeprotingiMokiniai, mokSk);
+	NeprotingiMokiniai.clear();
+	ProtingiMokiniai.clear();
+}
+void AntraStrategija(std::list<Mokinys> mokiniai)
+{
+// Skirstymas i dvi grupes antra strategija
+	auto start11 = std::chrono::high_resolution_clock::now();
+	auto st11 = start11;
+	std::list<Mokinys> NeprotingiMokiniai2;
+	
+	for(auto el:mokiniai)
+	{
+		
+		
+		if (el.rezult >= 5)
+		{
+		}
+		else
+		{
+			NeprotingiMokiniai2.push_back(el);
+		}
+	}
+	int mokSk = mokiniai.size();
+	std::erase_if(mokiniai, [](Mokinys x) { return x.rezult < 5; });
+	auto end11 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff11 = end11 - start11; // Skirtumas (s)
+	std::cout << "Iraso dalinimo i dvi grupes kuriant viena konteineri laikas: " << diff11.count() << " s\n";
+
+	// Protingu isvedimas
+	protinguIsvedimas(mokiniai, mokSk);
+
+	// Neprotingu isvedimas
+	neProtinguIsvedimas(NeprotingiMokiniai2, mokSk);
+
+	NeprotingiMokiniai2.clear();
+	mokiniai.clear();
+	
 }
