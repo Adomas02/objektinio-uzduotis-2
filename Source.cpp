@@ -38,7 +38,7 @@ int main()
 			cout << "Iveskite kokio failo rezultatu norit ";
 			cin >> failoPavadinimas;
 			cout<<endl;
-			bufer_nusk_list(failoPavadinimas);				
+			//bufer_nusk_list(failoPavadinimas);				
 				//funkcija su std::list
 			}
 			else if(b==2)
@@ -47,7 +47,7 @@ int main()
 			cout << "Iveskite kokio failo rezultatu norit ";
 			cin >> failoPavadinimas;
 			cout<<endl;
-			bufer_nusk_deq(failoPavadinimas);				
+			//bufer_nusk_deq(failoPavadinimas);				
 				//funkcija su std::deque
 			}
 
