@@ -87,7 +87,7 @@ void bufer_nusk(std::string read_vardas)
 				toliauKiek = kiek;
 				kiek = 0;
 				//mok.rezult=skaiciavimasVid(mok,toliauKiek);
-				mok.setRezultatas(skaiciavimasVid(mok,toliauKiek));
+				mok.setRezultatas();
 				mokiniai.push_back(mok);
 				// cout<<mokiniai.vardas;
 				splited.push_back(eil);
@@ -178,7 +178,7 @@ void bufer_nusk(std::string read_vardas)
 	std::cout <<endl;
 	
 }
-double skaiciavimasVid(Studentas mokiniai, int toliauKiek)
+/*double skaiciavimasVid(Studentas mokiniai, int toliauKiek)
 {
 	double vid, galutinis;
 	double sum = 0;
@@ -189,17 +189,17 @@ double skaiciavimasVid(Studentas mokiniai, int toliauKiek)
 	}
 	vid = sum / (toliauKiek - 3);
 	return galutinis = vid * 0.4 + mokiniai.getEgzaminas() * 0.6;
-}
+}*/
 void protinguIsvedimas(std::vector<Studentas> ProtingiMokiniai, int mokSk)
 {
 	auto start2 = std::chrono::high_resolution_clock::now();
 	auto st2 = start2;
 
-	//sort(ProtingiMokiniai.begin(),ProtingiMokiniai.end(),[](Mokinys& x, Mokinys& y){return x.vardas<y.vardas;});
+	sort(ProtingiMokiniai.begin(),ProtingiMokiniai.end(),[](Studentas& x, Studentas& y){return x.getVardas()<y.getVardas();});
 
 	auto end2 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	//std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
+	std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
 
 	std::string writeFileRez = "Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
@@ -216,11 +216,11 @@ void neProtinguIsvedimas(std::vector<Studentas> NeprotingiMokiniai, int mokSk)
 	auto st3 = start3;
 	std::string writeFileRez = "Neprotingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 
-	//sort(NeprotingiMokiniai.begin(),NeprotingiMokiniai.end(),[](Mokinys& x, Mokinys& y){return x.vardas<y.vardas;});
+	sort(NeprotingiMokiniai.begin(),NeprotingiMokiniai.end(),[](Studentas& x, Studentas& y){return x.getVardas()<y.getVardas();});
 
 	auto end3 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff3 = end3 - start3; // Skirtumas (s)
-	//std::cout << "Neprotingu rusiavimo laikas: " << diff3.count() << " s\n";
+	std::cout << "Neprotingu rusiavimo laikas: " << diff3.count() << " s\n";
 
 	std::ofstream out_nf(writeFileRez);
 	for (int i = 0; i < NeprotingiMokiniai.size(); i++)

@@ -20,19 +20,29 @@ public:
     void setPavarde (std::string aPavarde){ pavarde_=aPavarde; }
     void setEgzaminas (double aEgzaminas){ egzaminas_ = aEgzaminas;}
     void setNd (std::vector<double> aNd){ for(auto el:aNd){nd_.push_back(el);}}
-    void setRezultatas ( double aRez){rezultatas_=aRez;}
+    
+    inline void setRezultatas () {
+      double vid, galutinis;
+	    double sum = 0;
+      //std::cout<<"Apdorojama";
+	    for (int j = 0; j <sizeof(nd_); j++)
+	    {
+	  	  sum +=nd_[j];
+	    }
+    	vid = sum / (sizeof(nd_));
+	  rezultatas_ = vid * 0.4 + egzaminas_ * 0.6;
+    }
    
 
-    inline std::string getVardas() const { return vardas_; }
+    std::string getVardas() const { return vardas_; }
     std::string getPavarde(){ return pavarde_; }
     double getEgzaminas(){ return egzaminas_; }
     std::vector<double> getNd(){return nd_;}
     double getRezultatas(){ return rezultatas_; }
    
 
-    Studentas() : egzaminas_(0) { }  // default konstruktorius
+   Studentas() : egzaminas_(0) { }  // default konstruktorius
  
-    Studentas(std::istream& is);
-    std::istream& readStudent(std::istream&);  // set'eriai
+  
 };
 
