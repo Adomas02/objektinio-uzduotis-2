@@ -10,6 +10,21 @@
 - Pasirinkti ar norite generuoti failus ar ne
 - Su kokiu konteineriu norite rezultatų
 - Iš kokio failo norite imti duomenis
+
+## v1.1 Programoje implementuota Studentas klase
+### veikimo sparta lyginant optimizavimo lygius:<br>
+- o1 19.285 s
+- o2 18.321 s
+- o3 18.125 s
+### veikimo sparta lyginant su struktura:<br>
+- 10000000 įrašų su struktūra
+  - 3.58194s
+- 10000000 įrašų su klase
+  - 19.285 s
+- 1000000 su struktūra
+  - 0.73451 s  
+- 1000000 su klase
+  - 1.91364 s  
 ## v1.0 Programa skirta palyginti skirtingų c++ konteinerių veikimo bei skirtingų strategijų spartą beiu pridėtas makefile
 ### Programos veikimo metu matome skirtingų strategijų rezultatus:<br>
 - Pirmoji strategija kuria du naujus konteinerius
