@@ -105,6 +105,13 @@ void bufer_nusk(std::string read_vardas)
 	std::chrono::duration<double> diff5 = end5 - start5; // Skirtumas (s)
 	std::cout << "Failo paruosimo laikas: " << diff5.count() << " s\n";
 
+	auto start2 = std::chrono::high_resolution_clock::now();
+	auto st2 = start2;
+	sort(mokiniai.begin(),mokiniai.end(),[](Studentas& x, Studentas& y){return x.getVardas()<y.getVardas();});
+
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
+	std::cout << "Rusiavimo laikas: " << diff2.count() << " s\n";
 
 	// Skirstymas i dvi grupes pirma strategija
 	auto start1 = std::chrono::high_resolution_clock::now();
@@ -130,7 +137,12 @@ void bufer_nusk(std::string read_vardas)
 	auto end1 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff1 = end1 - start1; // Skirtumas (s)
 	std::cout << "Iraso dalinimo i dvi grupes kuriant du konteinerius laikas: " << diff1.count() << " s\n";
-    
+
+	
+    auto end4 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
+	std::cout << mokSk << " Bendras su vector laikas: " << diff4.count() << " s\n";
+	std::cout <<endl;
 	// Protingu isvedimas
 	protinguIsvedimas(ProtingiMokiniai, mokSk);
 
@@ -172,10 +184,7 @@ void bufer_nusk(std::string read_vardas)
 	mokiniai.clear();
 	NeprotingiMokiniai.clear();
 	ProtingiMokiniai.clear();
-	auto end4 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff4 = end4 - start; // Skirtumas (s)
-	std::cout << mokSk << " Bendras su vector laikas: " << diff4.count() << " s\n";
-	std::cout <<endl;
+
 	
 }
 /*double skaiciavimasVid(Studentas mokiniai, int toliauKiek)
@@ -192,15 +201,6 @@ void bufer_nusk(std::string read_vardas)
 }*/
 void protinguIsvedimas(std::vector<Studentas> ProtingiMokiniai, int mokSk)
 {
-	auto start2 = std::chrono::high_resolution_clock::now();
-	auto st2 = start2;
-
-	sort(ProtingiMokiniai.begin(),ProtingiMokiniai.end(),[](Studentas& x, Studentas& y){return x.getVardas()<y.getVardas();});
-
-	auto end2 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff2 = end2 - start2; // Skirtumas (s)
-	std::cout << "Protingu rusiavimo laikas: " << diff2.count() << " s\n";
-
 	std::string writeFileRez = "Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
 	for (int i = 0; i < ProtingiMokiniai.size(); i++)
@@ -212,16 +212,7 @@ void protinguIsvedimas(std::vector<Studentas> ProtingiMokiniai, int mokSk)
 }
 void neProtinguIsvedimas(std::vector<Studentas> NeprotingiMokiniai, int mokSk)
 {
-	auto start3 = std::chrono::high_resolution_clock::now();
-	auto st3 = start3;
 	std::string writeFileRez = "Neprotingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
-
-	sort(NeprotingiMokiniai.begin(),NeprotingiMokiniai.end(),[](Studentas& x, Studentas& y){return x.getVardas()<y.getVardas();});
-
-	auto end3 = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double> diff3 = end3 - start3; // Skirtumas (s)
-	std::cout << "Neprotingu rusiavimo laikas: " << diff3.count() << " s\n";
-
 	std::ofstream out_nf(writeFileRez);
 	for (int i = 0; i < NeprotingiMokiniai.size(); i++)
 	{
