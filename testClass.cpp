@@ -3,6 +3,7 @@
 #include"Studentas.h"
 
 int main(){
+    
     Studentas mokinys;
     std::vector<double> temp;
 
