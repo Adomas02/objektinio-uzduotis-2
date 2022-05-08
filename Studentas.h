@@ -2,6 +2,9 @@
 #include<iomanip>
 #include<vector>
 
+
+
+
 class Studentas {
 // realizacija
 private:
@@ -9,16 +12,24 @@ private:
   std::string pavarde_;
   double egzaminas_;
   std::vector<double> nd_;
+  
 // interfeisas
 public:
     void setVardas (std::string aVardas){ vardas_=aVardas; }
     void setPavarde (std::string aPavarde){ pavarde_=aPavarde; }
     void setEgzaminas (double aEgzaminas){ egzaminas_ = aEgzaminas;}
-    
-    std::string getVardas(){ return vardas_; }
+    void setNd (std::vector<double> aNd){ for(auto el:aNd){nd_.push_back(el);}}
+   
+
+    inline std::string getVardas() const { return vardas_; }
     std::string getPavarde(){ return pavarde_; }
     double getEgzaminas(){ return egzaminas_; }
+    std::vector<double> getNd(){return nd_;}
+   
+
     Studentas() : egzaminas_(0) { }  // default konstruktorius
+ 
     Studentas(std::istream& is);
-  std::istream& readStudent(std::istream&);  // set'eriai
+    std::istream& readStudent(std::istream&);  // set'eriai
 };
+
