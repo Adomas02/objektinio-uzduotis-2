@@ -1,3 +1,5 @@
+#pragma once
+
 #include<string>
 #include<iomanip>
 #include<vector>
@@ -20,11 +22,10 @@ public:
     void setPavarde (std::string aPavarde){ pavarde_=aPavarde; }
     void setEgzaminas (double aEgzaminas){ egzaminas_ = aEgzaminas;}
     void setNd (std::vector<double> aNd){ for(auto el:aNd){nd_.push_back(el);}}
-    
+
     inline void setRezultatas () {
       double vid, galutinis;
 	    double sum = 0;
-      //std::cout<<"Apdorojama";
 	    for (int j = 0; j <sizeof(nd_); j++)
 	    {
 	  	  sum +=nd_[j];
@@ -42,9 +43,11 @@ public:
    
 
    Studentas() : egzaminas_(0) { }  // default konstruktorius
- 
+  
+
+    Studentas(const Studentas& other): vardas_(other.vardas_),pavarde_(other.pavarde_),egzaminas_(other.egzaminas_),nd_(other.nd_),rezultatas_(other.rezultatas_){}	// copy constructor
+	  //Studentas &operator=(const Studentas &s);	// copy assignment constructor
+	  ~Studentas(){nd_.clear();}	//destructor
   
 };
-
-
 
