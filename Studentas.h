@@ -45,8 +45,26 @@ public:
    Studentas() : egzaminas_(0) { }  // default konstruktorius
   
 
-    Studentas(const Studentas& other): vardas_(other.vardas_),pavarde_(other.pavarde_),egzaminas_(other.egzaminas_),nd_(other.nd_),rezultatas_(other.rezultatas_){}	// copy constructor
-	  //Studentas &operator=(const Studentas &s);	// copy assignment constructor
+    Studentas(const Studentas& other){
+      vardas_=other.vardas_;
+      pavarde_=other.pavarde_;
+      egzaminas_=other.egzaminas_;
+      nd_=other.nd_;
+      rezultatas_=other.rezultatas_;
+    }// copy constructor
+
+    Studentas &operator=(const Studentas &s){
+      if (this==&s){
+        return *this;
+      }
+      vardas_=s.vardas_;
+      pavarde_=s.pavarde_;
+      egzaminas_=s.egzaminas_;
+      nd_=s.nd_;
+      rezultatas_=s.rezultatas_;
+      return *this;
+    }// copy assignment constructor 
+    
 	  ~Studentas(){nd_.clear();}	//destructor
   
 };
