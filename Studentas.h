@@ -36,10 +36,10 @@ public:
    
 
     std::string getVardas() const { return vardas_; }
-    std::string getPavarde(){ return pavarde_; }
-    double getEgzaminas(){ return egzaminas_; }
-    std::vector<double> getNd(){return nd_;}
-    double getRezultatas(){ return rezultatas_; }
+    std::string getPavarde() const{ return pavarde_; }
+    double getEgzaminas()const{ return egzaminas_; }
+    std::vector<double> getNd()const{return nd_;}
+    double getRezultatas()const{ return rezultatas_; }
    
 
    Studentas() : egzaminas_(0) { }  // default konstruktorius
