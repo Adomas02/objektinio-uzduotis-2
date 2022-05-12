@@ -3,6 +3,7 @@
 #include<string>
 #include<iomanip>
 #include<vector>
+#include <iostream>
 
 class zmogus{
   protected:
@@ -80,6 +81,11 @@ public:
     }// copy assignment constructor 
     
 	  ~Studentas(){nd_.clear();}	//destructor
+
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& mok){
+      os<<mok.vardas_<<" "<< std::fixed << std::setprecision(2)<<mok.getRezultatas();
+      return os;
+    }
   
 };
 
