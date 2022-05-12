@@ -4,10 +4,24 @@
 #include<iomanip>
 #include<vector>
 
+class zmogus{
+  protected:
+    std::string vardas_;
+    std::string pavarde_;
+  public:
+  inline std::string getVardas() const{return vardas_;}
+  virtual void setVardas(std::string) = 0;
+  inline std::string getPavarde() const{return pavarde_;}
+  virtual void setPavarde(std::string) = 0;
+  zmogus(){
+    vardas_="";
+    pavarde_="";
+  }
+
+};
 
 
-
-class Studentas {
+class Studentas:public zmogus {
 // realizacija
 private:
   std::string vardas_;

@@ -118,6 +118,7 @@ void bufer_nusk(std::string read_vardas)
 	auto st1 = start1;
 	std::vector<Studentas> ProtingiMokiniai;
 	std::vector<Studentas> NeprotingiMokiniai;
+	
 	double galutinis;
 	for(auto el:mokiniai)
 	{
