@@ -25,8 +25,8 @@ class zmogus{
 class Studentas:public zmogus {
 // realizacija
 private:
-  std::string vardas_;
-  std::string pavarde_;
+  //std::string vardas_;
+  //std::string pavarde_;
   double egzaminas_;
   std::vector<double> nd_;
   double rezultatas_;
