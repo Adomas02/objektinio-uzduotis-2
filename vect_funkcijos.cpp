@@ -204,10 +204,11 @@ void protinguIsvedimas(std::vector<Studentas> ProtingiMokiniai, int mokSk)
 {
 	std::string writeFileRez = "Protingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_f(writeFileRez);
-	for (int i = 0; i < ProtingiMokiniai.size(); i++)
+	for(auto a:ProtingiMokiniai)
 	{
-		out_f << ProtingiMokiniai[i] << endl;
+		out_f<<a<<endl;
 	}
+
 	out_f.close();
 
 }
@@ -215,10 +216,11 @@ void neProtinguIsvedimas(std::vector<Studentas> NeprotingiMokiniai, int mokSk)
 {
 	std::string writeFileRez = "Neprotingi_Mokiniai_is" + std::to_string(mokSk) + "_Rez.txt";
 	std::ofstream out_nf(writeFileRez);
-	for (int i = 0; i < NeprotingiMokiniai.size(); i++)
+	for(auto a:NeprotingiMokiniai)
 	{
-		out_nf << NeprotingiMokiniai[i]<< endl;
+		out_nf<<a<<endl;
 	}
+
 	out_nf.close();
 }
 
