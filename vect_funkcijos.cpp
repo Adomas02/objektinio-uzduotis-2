@@ -53,6 +53,7 @@ void bufer_nusk(std::string read_vardas)
 	int toliauKiek;
 
 	std::vector<Studentas> mokiniai;
+	
 
 	// bufferio padalijimas i eiluciu vektoriu
 	while (my_buffer)

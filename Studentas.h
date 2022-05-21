@@ -83,8 +83,11 @@ public:
 	  ~Studentas(){nd_.clear();}	//destructor
 
     friend std::ostream& operator<<(std::ostream& os, const Studentas& mok){
+      //if(galutinis==1)
       os<<mok.vardas_<<" "<< std::fixed << std::setprecision(2)<<mok.getRezultatas();
+      //else   os<<mok.vardas_<<mok.pavarde_<<" "<< std::fixed << std::setprecision(2)<<mok.getRezultatas();
       return os;
+      
     }
   
 };
