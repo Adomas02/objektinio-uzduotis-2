@@ -9,7 +9,8 @@ int main()
 	if (i == 1)
 	{
 		SarasuGeneravimas();
-	}
+	} 
+
 
 	int a = 1;
 	while (a == 1)
