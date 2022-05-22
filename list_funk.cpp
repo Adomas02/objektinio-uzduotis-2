@@ -250,3 +250,15 @@ void AntraStrategija(std::list<Mokinys> mokiniai)
 	mokiniai.clear();
 	
 }
+double skaiciavimasVid(Mokinys mokiniai, int toliauKiek)
+{
+	double vid, galutinis;
+	double sum = 0;
+//std::vector<double> temp ;
+	for (int j = 0; j < toliauKiek - 3; j++)
+	{
+		sum += mokiniai.paz[j];
+	}
+	vid = sum / (toliauKiek - 3);
+	return galutinis = vid * 0.4 + mokiniai.egz * 0.6;
+}

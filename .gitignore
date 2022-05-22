@@ -372,3 +372,4 @@ SarasuGeneravimas.o
 vect_funkcijos.o
 testClass.cpp
 testClass.cpp
+*.o

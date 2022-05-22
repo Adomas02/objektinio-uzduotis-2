@@ -43,7 +43,7 @@ std::vector<std::string> split(std::string str, char delimiter);
 //std::vector<Mokinys> sortabc(std::vector<Mokinys> mok);
 void SarasuGeneravimas();
 void sarasuIsvedimas(std::vector<std::vector<Mokinys>> sarasuSarasas,int kiek);
-double skaiciavimasVid(Studentas mokiniai,int toliauKiek);
+double skaiciavimasVid(Mokinys mokiniai,int toliauKiek);
 void protinguIsvedimas(std::vector<Studentas> ProtingiMokiniai,int mokSk);
 void neProtinguIsvedimas(std::vector<Studentas> NeprotingiMokiniai,int mokSk);
 void bufer_nusk_list(std::string read_vardas);
